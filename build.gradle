@@ -1,56 +1,34 @@
 buildscript {
     repositories {
-        maven {
-            url 'https://dl.bintray.com/giancosta86/Hephaestus'
-        }
+        //TODO! Del this!
+        mavenLocal()
 
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
-        classpath 'info.gianlucacosta.moonlicense:moonlicense-gradle:4.3'
-        classpath 'info.gianlucacosta.aurora:aurora:8.0'
+        classpath 'info.gianlucacosta.aurora:aurora:10.0.0-SNAPSHOT'
     }
 }
 
 
 apply plugin: 'java'
 apply plugin: 'maven'
-apply plugin: 'com.jfrog.bintray'
 apply plugin: 'osgi'
-apply plugin: 'info.gianlucacosta.moonlicense'
 apply plugin: 'info.gianlucacosta.aurora'
 
 
 group = 'info.gianlucacosta.moonlicense'
 archivesBaseName = 'moonlicense'
-version = '3.0'
+version = '4.0.0-SNAPSHOT'
 
 description = 'Language-independent Java library for setting/removing license notices'
 
-ext.facebookPage = "https://www.facebook.com/moonlicense"
-
 sourceCompatibility = '1.8'
-
 
 dependencies {
     testCompile 'junit:junit:4.11'
 }
-
-
-moonLicense {
-    license = apache2
-
-    productInfo {
-        productName = 'MoonLicense'
-        inceptionYear = 2015
-        copyrightHolder = 'Gianluca Costa'
-    }
-
-    excludes << '^src/main/resources/.*/testing/.*'
-}
-
 
 aurora {
     gitHubUser = 'giancosta86'
@@ -58,19 +36,5 @@ aurora {
     author {
         name = 'Gianluca Costa'
         email = 'gianluca@gianlucacosta.info'
-    }
-
-    bintray {
-        repo = 'Hephaestus'
-        licenses = ['Apache-2.0']
-        labels = [
-                'licenses',
-                'notices',
-                'source files',
-                'library',
-                'Java',
-                'language-independent',
-                'extensible'
-        ]
     }
 }
